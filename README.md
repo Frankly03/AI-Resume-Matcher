@@ -30,15 +30,15 @@ This project leverages pre-trained models, embeddings, and cosine similarity to 
 
 ![Result Image](images/UI.png)
 
-![Result Image](images/InputsWithOwnJD.png)
-
 ![Result Image](images/PreloadJDs.png)
 
 ![Result Image](images/InputsWithPreloadJD.png)
 
-![Result Image](images/ResultWithOwnJD.png)
-
 ![Result Image](images/ResultWithPreloadJD.png)
+
+![Result Image](images/InputsWithOwnJD.png)
+
+![Result Image](images/ResultWithOwnJD.png)
 
 ![Result Image](images/sectionScores.png)
 
