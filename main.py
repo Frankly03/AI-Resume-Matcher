@@ -98,10 +98,18 @@ if st.button("Match Resumes") and uploaded_files and job_description:
                              
         # Results as DataFrame
         if match_scores:
-            result_df = pd.DataFrame({
+            result_data = {
                 "Resume Name": resume_names,
                 "Match Scores(%)": match_scores
-            }).sort_values(by="Match Scores(%)", ascending=False)
+            }
+
+            # Add each section score to dataframe
+            for idx, section in enumerate(resume_sections_list[0].keys()):  # Assuming all resumes have the same sections
+                result_data[f"{section.title()} Score"] = [
+                    round(section_scores.get(section, 0) * 100, 2) for _, _, section_scores in combined
+                ]
+            
+            result_df = pd.DataFrame(result_data).sort_values(by="Match Scores(%)", ascending=False)
         else:
             st.warning("No match scores computed. Please upload resumes and enter a valid job description.")
 
