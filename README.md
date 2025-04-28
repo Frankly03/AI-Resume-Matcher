@@ -1,15 +1,21 @@
 # AI Resume Matcher
 
-**AI Resume Matcher** is a machine learning-powered tool that helps job seekers and recruiters match resumes with job descriptions based on relevance. This tool processes resumes and job descriptions, calculates a match score, and ranks resumes according to how well they fit the job description.
+## Overview
+
+
+The **AI Resume Matcher** is an intelligent system that helps to match resumes with job descriptions using advanced machine learning and natural language processing techniques. The tool analyzes resumes and compares them with job descriptions (JD) to provide a match score, along with detailed section-wise similarity scores such as Skills, Experience, Projects, Education, etc.
+
+
+This project leverages pre-trained models, embeddings, and cosine similarity to perform the analysis. It also integrates NLP techniques such as Named Entity Recognition (NER) for enhanced keyword extraction.
 
 ## Features
 
-- Upload multiple resumes in PDF or DOCX format.
-- Paste or select a job description from a list of sample jobs.
-- AI-powered resume matching using advanced NLP techniques.
-- Rank resumes by relevance to job description.
-- Download the matching results as a CSV file.
-- View detailed matching scores for each resume.
+- **Resume Upload**: Supports the upload of `.pdf` and `.docx` file formats.
+- **Job Description Input**: Paste your own job description or select from a set of preloaded sample JDs.
+- **Resume Matching**: Automatically matches uploaded resumes to the job description and provides a match score.
+- **Section-wise Scores**: Detailed scores for different resume sections (Skills, Experience, Projects, etc.).
+- **Downloadable CSV**: Download the results as a CSV for further analysis.
+- **Interactive UI**: Built using Streamlit for easy-to-use web interface.
 
 ## Tech Stack
 
@@ -19,6 +25,24 @@
 - Spacy (for NLP and NER)
 - Sentence Transformers (for embedding text)
 - scikit-learn (for cosine similarity calculation)
+
+## Results
+
+![Result Image](images/UI.png)
+
+![Result Image](images/InputsWithOwnJD.png)
+
+![Result Image](images/InputsWithPreloadJD.png)
+
+![Result Image](images/PreloadJDs.png)
+
+![Result Image](images/ResultWithOwnJD.png)
+
+![Result Image](images/ResultWithPreloadJD.png)
+
+![Result Image](images/sectionScores.png)
+
+![Result Image](images/Excel_Image.png)
 
 ## Installation
 
@@ -40,34 +64,24 @@
    ```bash
    python -m spacy download en_core_web_sm
 
-Usage
-1. Download the required Spacy language model:
-     After setting up the project and installing dependencies, you can start the app by running the following command:
-     ```bash
-        streamlit run main.py
+## Usage
+1. Upload Resumes: Click the "Upload Resumes" button to upload one or more .pdf or .docx files.
 
-2. Upload Resumes:
-     You can upload multiple resumes in either PDF or DOCX format.
-     The tool will process each resume and extract the relevant sections (such as skills, experience, education, etc.).
+2. Choose Job Role: Optionally, select a job role from the preloaded list of sample job descriptions or paste your own job description in the "Paste Job Description Here" text area.
 
+3. Match Resumes: Click on the "Match Resumes" button to start the analysis. The app will process the resumes, compare them with the job description, and display the match results.
 
-3. Enter or Select a Job Description:
-     If you already have a Job Description (JD):
-       You can simply paste your job description into the text box provided.
-       This is the preferred method, as the system will match your resumes to the specific JD you provide.
+4. Download Results: Once the results are displayed, you can download them as a CSV file containing the match scores and section-wise similarity scores for each resume.
    
-     If you don't have a Job Description:
-       Don't worry! We have preloaded a list of sample job descriptions for various roles.
-       Just select a job role (e.g., Data Scientist, Machine Learning Engineer, etc.) from the dropdown list, and we’ll use the sample JD for matching your resumes.
-   
-5. Click "Match Resumes":
-     Once your resumes are uploaded and the job description is provided, click the Match Resumes button.
-     The tool will calculate a match score for each resume based on how well it matches the provided job description (or the selected sample JD).
 
-6. Review the Results:
-     After the processing is complete, the results will be displayed in a ranked list of resumes, showing their match score in percentage.
-     The higher the match score, the more relevant the resume is to the job description.
+## Acknowledgments
+Streamlit for providing a simple way to build interactive web apps.
 
-5. Download the Results:
-     You can download the matching results as a CSV file for further analysis and sharing.
-     Click the "Download Results as CSV" button to save the results to your local system.
+scikit-learn for the machine learning models and cosine similarity functionality.
+
+spaCy for Named Entity Recognition (NER).
+
+Pandas for handling data structures and CSV exports.
+
+
+Results
