@@ -10,6 +10,16 @@ from app.jd_parser import clean_job_description, extract_keywords
 from app.embedder import TextEmbedder
 from app.matcher import Matcher
 from app.sample_jds import sample_jds
+import spacy
+from spacy.cli import download
+
+# Download the model if it's not already present
+try:
+    nlp = spacy.load('en_core_web_sm')
+except OSError:
+    download('en_core_web_sm')
+    nlp = spacy.load('en_core_web_sm')
+
 
 st.set_page_config(page_title="AI Resume Matcher", layout="wide")
 st.title("AI-Powered Resumer Matcher")
