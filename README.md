@@ -34,11 +34,10 @@ This project leverages pre-trained models, embeddings, and cosine similarity to 
 
 ![Result Image](images/InputsWithPreloadJD.png)
 
-![Result Image](images/ResultWithPreloadJD.png)
-
 ![Result Image](images/InputsWithOwnJD.png)
 
-![Result Image](images/ResultWithOwnJD.png)
+![Result Image](images/ResultWithPreloadJDs.png)
+
 
 ![Result Image](images/sectionScores.png)
 
@@ -83,5 +82,3 @@ spaCy for Named Entity Recognition (NER).
 
 Pandas for handling data structures and CSV exports.
 
-
-Results
