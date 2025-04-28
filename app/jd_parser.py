@@ -1,10 +1,15 @@
 import re
 import spacy
-
-import spacy
 from spacy.cli import download
 import nltk
 from nltk.corpus import stopwords
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 # Ensure stopwords are downloaded
 try:
@@ -14,11 +19,7 @@ except LookupError:
     stop_words = set(stopwords.words('english'))
     
 # Try loading the model, and if it fails, download it
-try:
-    nlp = spacy.load('en_core_web_sm')
-except OSError:
-    download('en_core_web_sm')
-    nlp = spacy.load('en_core_web_sm')
+
         
 
 def clean_job_description(text: str) -> str:
