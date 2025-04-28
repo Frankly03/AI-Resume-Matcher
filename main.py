@@ -3,6 +3,7 @@ import os
 import tempfile
 import pandas as pd 
 import docx2txt
+from streamlit_echarts import st_echarts
 
 from app.resume_parser import extract_text_from_resume, extract_sections
 from app.jd_parser import clean_job_description, extract_keywords
@@ -78,25 +79,36 @@ if st.button("Match Resumes") and uploaded_files and job_description:
 
         # Match
         matcher = Matcher(embedder, cleaned_jd, resume_sections_list)
-        scores, w_scores = matcher.match()
-    
+        match_scores, all_section_scores = matcher.match()
+        
 
+        st.subheader("Matching Results")
+
+        combined = list(zip(resume_names, match_scores, all_section_scores))
+        combined = sorted(combined, key=lambda x: x[1], reverse=True)
+
+        for resume_name, final_score, section_scores in combined:
+            with st.expander(f'**{resume_name}** - Final Match Score: `{final_score}%`'):
+
+                st.write("### Section-Wise Similarity Scores")
+
+                for section, score in section_scores.items():
+                    st.write(f"**{section.title()}**")
+                    st.progress(min(max(int(score * 100), 1), 100))
+                             
         # Results as DataFrame
-        if scores:
+        if match_scores:
             result_df = pd.DataFrame({
                 "Resume Name": resume_names,
-                "Match Scores(%)": scores
+                "Match Scores(%)": match_scores
             }).sort_values(by="Match Scores(%)", ascending=False)
         else:
-            st.warning(" No match scores computed. Please upload resumes and enter a valid job description.")
+            st.warning("No match scores computed. Please upload resumes and enter a valid job description.")
 
-        with st.expander("View w_scores"):
-            st.write(w_scores)
-
-        # Show scores
-        st.subheader("Matching Results")
-        for idx, row in result_df.iterrows():
-            st.write(f"**{row['Resume Name']}** — Match Score: `{row['Match Scores(%)']}%`")
+        # # Show scores
+        # st.subheader("Matching Results")
+        # for idx, row in result_df.iterrows():
+        #     st.write(f"**{row['Resume Name']}** — Match Score: `{row['Match Scores(%)']}%`")
 
         
         # Downloadable CSV
